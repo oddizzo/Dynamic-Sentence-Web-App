@@ -54,7 +54,7 @@ namespace Dynamic_Sentence_Web_App.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] Sentence sentence)
+        public async Task<IActionResult> Create([Bind("Id,Words")] Sentence sentence)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Dynamic_Sentence_Web_App.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] Sentence sentence)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Words")] Sentence sentence)
         {
             if (id != sentence.Id)
             {

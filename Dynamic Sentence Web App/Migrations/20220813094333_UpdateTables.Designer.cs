@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dynamic_Sentence_Web_App.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220812232709_InitialiseTables")]
-    partial class InitialiseTables
+    [Migration("20220813094333_UpdateTables")]
+    partial class UpdateTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,24 +27,12 @@ namespace Dynamic_Sentence_Web_App.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Words")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Sentence");
-                });
-
-            modelBuilder.Entity("Dynamic_Sentence_Web_App.Models.WordSentence", b =>
-                {
-                    b.Property<int>("WordUnitId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SentenceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("WordUnitId", "SentenceId");
-
-                    b.HasIndex("SentenceId");
-
-                    b.ToTable("WordSentence");
                 });
 
             modelBuilder.Entity("Dynamic_Sentence_Web_App.Models.WordType", b =>
@@ -80,21 +68,6 @@ namespace Dynamic_Sentence_Web_App.Migrations
                     b.HasIndex("WordTypeId");
 
                     b.ToTable("WordUnit");
-                });
-
-            modelBuilder.Entity("Dynamic_Sentence_Web_App.Models.WordSentence", b =>
-                {
-                    b.HasOne("Dynamic_Sentence_Web_App.Models.Sentence", "Sentence")
-                        .WithMany("WordSentences")
-                        .HasForeignKey("SentenceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Dynamic_Sentence_Web_App.Models.WordUnit", "WordUnit")
-                        .WithMany("WordSentences")
-                        .HasForeignKey("WordUnitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Dynamic_Sentence_Web_App.Models.WordUnit", b =>
