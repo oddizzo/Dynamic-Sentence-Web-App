@@ -48,7 +48,7 @@ namespace Dynamic_Sentence_Web_App.Controllers
         // GET: WordUnits/Create
         public IActionResult Create()
         {
-            ViewData["WordTypeId"] = new SelectList(_context.WordTypes, "Id", "Id");
+            ViewData["WordType"] = new SelectList(_context.WordTypes, "Id", "Type");
             return View();
         }
 
@@ -82,7 +82,7 @@ namespace Dynamic_Sentence_Web_App.Controllers
             {
                 return NotFound();
             }
-            ViewData["WordTypeId"] = new SelectList(_context.WordTypes, "Id", "Id", wordUnit.WordTypeId);
+            ViewData["WordType"] = new SelectList(_context.WordTypes, "Id", "Type", wordUnit.WordType);
             return View(wordUnit);
         }
 
